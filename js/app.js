@@ -1,25 +1,137 @@
 /*-------------------------------- Constants --------------------------------*/
-
+const winningCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 4, 8],
+    [1, 4, 7],
+    [2, 4, 6],
+    [0, 3, 6],
+    [2, 5, 8]
+]
 
 
 /*---------------------------- Variables (state) ----------------------------*/
+
 let board, turn, winner, tie
+//represent state of squares on the board
+//represents player X 
+//track whose turn it is
+//track if anyone has won yet
+//represent if game has ended in a tie
 
 
 /*------------------------ Cached Element References ------------------------*/
-//const squareEls = document.querySelector(".board")
 const squareEls = document.querySelectorAll(".sqr")
-//console.dir(allSqrs)
+//console.log(squareEls)
 const messageEls = document.querySelector(".message")
-//console.log(message)
-
+//console.log(messageEls)
 /*----------------------------- Event Listeners -----------------------------*/
+
+// document.getElementById("gameboard").forEach(function (evt) {
+//   squareEls.addEventListener("click", evt)
+// })
+  
+squareEls.forEach(square => square.addEventListener("click", handleClick)) 
+
+
+  // const btnEl = document.querySelector('button')
+// btnEl.addEventListener('click', function(evt) {
+//   console.log(evt)
+// })
 
 
 
 /*-------------------------------- Functions --------------------------------*/
+init()
 
-// Step 1 - Define the required variables used to track the state of the game
+//call init function when app loads
+function init() {
+  board = [null, null, null, null, null, null, null, null, null];
+  turn = 1;
+  winner = true;
+  tie = false;
+  render();
+  updateBoard()
+  updateMessage()
+}
+//? There is a better way to initialize a new array * 9 Nulls, and to replace that with the boards in order?
+
+function updateBoard() {
+    board.forEach(function (square, index) {
+    if (square === -1) {
+      console.log(squareEls[index])
+      return squareEls[index].textContent = "O";
+    } 
+    if (square === 1) {
+      return squareEls[index].textContent = "X";
+    }
+    // if (square === null) {
+    //   return squareEls[index].textContent = "";
+    // }
+  })
+}
+updateBoard()
+
+function render(){}
+
+function updateMessage() {
+  if (winner === "false" && tie === "false") {
+    return `It is ${turn}'s turn!`;
+  }
+  if (winner === "false" && tie === "true") {
+    return `It is a tie!`
+  } else {
+    `Congratulations ${!turn}! You win!`
+  }
+}
+updateMessage()
+
+function handleClick(evt) {
+  const sqIdx = evt.target.id.at(-1) 
+  //console.log(board[sqIdx])
+  if (board[sqIdx] === "true" || winner === "true"){
+    return
+  }
+}
+//.at will find event target id at, and -1 mean it will go to the very end of the string and one left
+//or use slice()
+
+function placePiece(index) {
+  board[index] === turn
+  console.log(turn)
+}
+
+function checkForTie(board){
+  //return board.every
+}
+
+//represents state of squares on the board
+//loop through the board and for each square:
+ //use current index of the iteration to access the same  square in sqareEls array
+  //style the square however, depending on value of contained in the square being iterated over (-1, 1, or null) 
+    //? start with letters to keep it simple (Y, Z, null)
+
+
+
+// board.forEach(function (boardEl) {
+//   //console.dir(boardEl);
+//   board.forEach()
+//  if (boardEl = -1) {
+//   return "Y"
+// } else if (boardEl = 1) {
+//   return "Z"
+// } else {
+//  return null
+// }
+// });
+
+
+
+
+
+
+//// Step 1 - Define the required variables used to track the state of the game
 
   // 1a) Use a variable named `board` to represent the state of the squares on
   //     the board.
