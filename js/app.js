@@ -26,6 +26,7 @@ const squareEls = document.querySelectorAll(".sqr")
 //console.log(squareEls)
 const messageEls = document.querySelector(".message")
 //console.log(messageEls)
+const resetBtnEl = document.querySelector(".reset").addEventListener("click", init())
 /*----------------------------- Event Listeners -----------------------------*/
 
 // document.getElementById("gameboard").forEach(function (evt) {
@@ -47,7 +48,7 @@ init()
 
 //call init function when app loads
 function init() {
-  board = [1, 1, -1, -1, -1, 1, 1, 1, -1];
+  board = [null, null, null, null, null, null, null, null, null];
   turn = 1
   winner = true
   tie = false
@@ -73,7 +74,10 @@ function updateBoard() {
 }
 updateBoard()
 
-function render(){}
+function render(){
+  updateBoard()
+  updateMessage()
+}
 
 function updateMessage() {
   if (winner === "false" && tie === "false") {
@@ -88,23 +92,22 @@ function updateMessage() {
 //updateMessage()
 
 function handleClick(evt) {
-  placePiece(sqxId)
+  const sqIdx = evt.target.id.at(-1) 
+  if (board[sqIdx] === true || winner === true){
+    return
+  } else {
+  placePiece(sqIdx)
   checkForTie()
   checkForWinner()
   switchPlayerTurn()
-
-  
-  const sqIdx = evt.target.id.at(-1) 
-  //console.log(board[sqIdx])
-  if (board[sqIdx] === "true" || winner === "true"){
-    return
-  }
+//console.log(board[sqIdx])
+}
 }
 //.at will find event target id at, and -1 mean it will go to the very end of the string and one left
 //or use slice()
 
-function placePiece(index) {
-  board[index] = turn
+function placePiece(sqIdx) {
+  (board[sqIdx] = turn)
   //console.log(board[index])
 }
 placePiece()
@@ -118,7 +121,7 @@ function checkForTie(){
 
 function checkForWinner(){
   winningCombos.forEach(function(element){
-  console.log(element)
+  //console.log(element)
   let first = board[element[0]]
   let second = board[element[1]]
   let third = board[element[2]]
@@ -133,9 +136,18 @@ function checkForWinner(){
   checkForWinner()
 
 function switchPlayerTurn(){
-  if (winner = true)
-  
+  if (winner = true){
+    return
+  } else if (winner = false){
+    turn = (turn * -1)
+  }
 }
+
+
+
+
+    
+
 
   // Math.abs() is absolute value function - returns the absolute value of a number. The absolute value of x. If x is negative (including -0), returns -x. Otherwise, returns x. The result is therefore always a positive number or 0.
 // const winningCombos = [
