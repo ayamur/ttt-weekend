@@ -47,10 +47,10 @@ init()
 
 //call init function when app loads
 function init() {
-  board = [null, null, null, null, null, null, null, null, null];
-  turn = 1;
-  winner = true;
-  tie = false;
+  board = [1, 1, -1, -1, -1, 1, 1, 1, -1];
+  turn = 1
+  winner = true
+  tie = false
   render();
   updateBoard()
   updateMessage()
@@ -60,7 +60,7 @@ function init() {
 function updateBoard() {
     board.forEach(function (square, index) {
     if (square === -1) {
-      console.log(squareEls[index])
+      //console.log(squareEls[index])
       return squareEls[index].textContent = "O";
     } 
     if (square === 1) {
@@ -85,7 +85,7 @@ function updateMessage() {
     `Congratulations ${!turn}! You win!`
   }
 }
-updateMessage()
+//updateMessage()
 
 function handleClick(evt) {
   const sqIdx = evt.target.id.at(-1) 
@@ -98,17 +98,46 @@ function handleClick(evt) {
 //or use slice()
 
 function placePiece(index) {
-  board[index] === turn
-  console.log(turn)
+  board[index] = turn
+  //console.log(turn)
 }
 
-function checkForTie(board){
-  //return board.every
+
+//console.log(placePiece())
+
+function checkForTie(){
+  console.log(!board.includes("null"))
+  if (!board.includes("null")) {
+    tie = true
+  }
 }
+
+
+// function checkForTie(){
+// board.some(checkForTie(null)) 
+// if board.some(checkForTie(null) = true {
+//     tie = true
+// }) return tie = true
+// }
+  
+// function checkForTie() {
+//   return board.every(squareEls => squareEls !== null)
+// }
+  
+//console.log(board.every(squareEls => squareEls !== null))
+
+
+
+// function checkForTie(board){
+//   if (board.some(null) !== true){
+//      tie === true
+//   }  return tie
+// }
+// checkForTie(squareEls)
 
 //represents state of squares on the board
 //loop through the board and for each square:
- //use current index of the iteration to access the same  square in sqareEls array
+ //use current index of the iteration to access the same  square in squareEls array
   //style the square however, depending on value of contained in the square being iterated over (-1, 1, or null) 
     //? start with letters to keep it simple (Y, Z, null)
 
@@ -133,34 +162,34 @@ function checkForTie(board){
 
 //// Step 1 - Define the required variables used to track the state of the game
 
-  // 1a) Use a variable named `board` to represent the state of the squares on
-  //     the board.
+  //// 1a) Use a variable named `board` to represent the state of the squares on
+  ////     the board.
 
-  // 1b) Use a variable named `turn` to track whose turn it is.
+  //// 1b) Use a variable named `turn` to track whose turn it is.
 
-  // 1c) Use a variable named `winner` to represent if anyone has won yet.
+  //// 1c) Use a variable named `winner` to represent if anyone has won yet.
 
-  // 1d) Use a variable named `tie` to represent if the game has ended in a tie.
-
-
-// Step 2 - Store cached element references.
-
-  // 2a) In a constant called `squareEls`, store the nine elements 
-  //    representing the squares on the page.
-
-  // 2b) In a constant called `messageEl`, store the element that displays the 
-  //    game's status on the page.
+  //// 1d) Use a variable named `tie` to represent if the game has ended in a tie.
 
 
-// Step 3 - Upon loading, the game state should be initialized, and a function 
-//          should be called to render this game state.
+//// Step 2 - Store cached element references.
 
-  // 3a) Create a function called `init`.
+  //// 2a) In a constant called `squareEls`, store the nine elements 
+  ////    representing the squares on the page.
 
-  // 3b) Call this `init` function when the app loads.
+  //// 2b) In a constant called `messageEl`, store the element that displays the 
+  ////    game's status on the page.
+
+
+//// Step 3 - Upon loading, the game state should be initialized, and a function 
+////          should be called to render this game state.
+
+  //// 3a) Create a function called `init`.
+
+  //// 3b) Call this `init` function when the app loads.
   
-  // 3c) Set the `board` variable to an array containing nine `null`s to 
-  //    represent empty squares.
+  //// 3c) Set the `board` variable to an array containing nine `null`s to 
+  ////    represent empty squares.
 
   // 3d) Set the `turn` to `1` - which will represent player X.
 
@@ -298,3 +327,6 @@ function checkForTie(board){
   //     it should call the `init` function you created in step 3.
 
   //TMNT? Silent Hill? SCP? Persephone? Yin Yang? Moon Sun?
+  //Math.round(Math.random() * 9)for computer turn to spice up where the computer chooses to place their piece?
+  //if not that: Math.floor(Math.random() * 10)
+  //or Math.floor(Math.random() * 9) + 1
