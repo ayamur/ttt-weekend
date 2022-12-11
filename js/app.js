@@ -88,6 +88,12 @@ function updateMessage() {
 //updateMessage()
 
 function handleClick(evt) {
+  placePiece(sqxId)
+  checkForTie()
+  checkForWinner()
+  switchPlayerTurn()
+
+  
   const sqIdx = evt.target.id.at(-1) 
   //console.log(board[sqIdx])
   if (board[sqIdx] === "true" || winner === "true"){
@@ -99,20 +105,57 @@ function handleClick(evt) {
 
 function placePiece(index) {
   board[index] = turn
-  //console.log(turn)
+  //console.log(board[index])
 }
-
-
+placePiece()
 //console.log(placePiece())
 
 function checkForTie(){
-  console.log(!board.includes("null"))
   if (!board.includes("null")) {
     tie = true
   }
 }
 
+function checkForWinner(){
+  winningCombos.forEach(function(element){
+  console.log(element)
+  let first = board[element[0]]
+  let second = board[element[1]]
+  let third = board[element[2]]
+  let total = first + second + third
+  let absValue = Math.abs(total)
+  if (absValue === 3){
+    winner = true
+  }
+    })
+  }
 
+  checkForWinner()
+
+function switchPlayerTurn(){
+  if (winner = true)
+  
+}
+
+  // Math.abs() is absolute value function - returns the absolute value of a number. The absolute value of x. If x is negative (including -0), returns -x. Otherwise, returns x. The result is therefore always a positive number or 0.
+// const winningCombos = [
+//   [0, 1, 2],
+//   [3, 4, 5],
+//   [6, 7, 8],
+//   [0, 4, 8],
+//   [1, 4, 7],
+//   [2, 4, 6],
+//   [0, 3, 6],
+//   [2, 5, 8]
+// ]
+
+//console.log(winningCombos[1][2])
+
+
+//function switchPlayerTurn
+
+
+//switchPlayerTurn
 // function checkForTie(){
 // board.some(checkForTie(null)) 
 // if board.some(checkForTie(null) = true {
