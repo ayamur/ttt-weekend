@@ -37,6 +37,7 @@ const resetBtnEl = document.querySelector(".reset")
   boardEl.addEventListener("click", handleClick)
   
   resetBtnEl.addEventListener("click", init)
+
 // document.querySelectorAll(".sqr").forEach(square => {square.addEventListener("click", handleClick{
 //   )}
 //   )}
@@ -105,6 +106,9 @@ if (val === 1)    {
 function updateMessage() {
   if (!winner && !tie) {
   messageEls.textContent = `It's ${turn === 1 ? "the ghost" : "the alien"}'s turn!`
+  // turn === 1 ? <--- ? makes it an if statement
+  // "the ghost" : "the alien" <--- if true, first option, if false, second option
+
   }else if (!winner && tie) {
   messageEls.textContent = `⛧ I̵͓̺͛̽͝t̴̙͖̟͒̽̚'̴͖̫̞͌͌͐s̴̻͎͛͑̔ a̵̢̢͎͆͐̀ ț̸̠͊͊i̸̞͓͛̐é̵͔̙͕͛!̴̡͉̪͌̒̾ D̴̪͕͕̐̿̒e̴̢̠͚͆̕͝m̴̢̼͎͑͑͝o̴̘͙͚͊̈́̐ń̸̡̟͔̈́̾s̵̢̡̼̓̐͠ t̸̪̻͚͆̚̚à̸̪͇̼̿͠k̵̡͓͖̽͊̚e̴̢͉̘͠͠ o̸͍͎̙͛͌̓v̵͙͎͊͝e̸̘̪̦̾̈́̾r̴͓̙͚̀͒̓ t̵̡̠̼͐̚͝h̸̼̠͉̿̐̕e̴͎̪̝̒͘̚ ẅ̸͉͔́̈́̈́o̴̢̙̿̈́r̴̢̠̺̿̀͛l̸͓̼̺͊͑͆d̵͕̦̫̓̽͊!̸̡͕̦͑͆͘ ⛧`
   } else {
@@ -160,17 +164,16 @@ function checkForTie(){
 
 function checkForWinner(){
   winningCombos.forEach(function(element){
-  //console.log(element)
-  let first = board[element[0]]
-  let second = board[element[1]]
-  let third = board[element[2]]
-  let total = first + second + third
-  let absValue = Math.abs(total)
-  if (absValue === 3){
-    winner = true
-  }
-    })
-  }
+    let first = board[element[0]]
+    let second = board[element[1]]
+    let third = board[element[2]]
+    let total = first + second + third
+    let absValue = Math.abs(total)
+    if (absValue === 3){
+      winner = true
+    }
+  })
+}
 //! no return, cannot return out of a ForEach
 
 //checkForWinner()
@@ -178,13 +181,12 @@ function checkForWinner(){
 function switchPlayerTurn(){
   if (winner === true){
     return
-  } else { (winner === false)
+  } else if (winner === false){
     turn = (turn * -1)
   }
 }
 
 //? Issue - cannot get winner to announce
-
 
 
     
