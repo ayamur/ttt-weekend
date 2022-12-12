@@ -73,6 +73,7 @@ function render() {
   updateMessage()
 }
 
+//! BUILD FIZZBUZZ AND TIC TAC TOE TO LEARN HOW TO WORK WITH A NEW LANGUAGE
 
 function updateBoard() {
     board.forEach(function(square, sqrIndex) {
@@ -103,12 +104,11 @@ if (val === 1)    {
 
 function updateMessage() {
   if (!winner && !tie) {
-  if (turn === 1) {
-  messageEls.textContent = `It's ${turn === 1 ? 'X' : 'O'}'s turn!`
-  }else if (!winner && tie) {
-  messageEls.textContent = `It's ${turn === 1 ? 'X' : 'O'}'s turn!`
-  } else {
-   `Congrats!${turn === 1 ? 'X' : 'O'}'s win!`
+  messageEls.textContent = `It's ${turn === 1 ? "X" : "O"}'s turn!`
+  }if (!winner && tie) {
+  messageEls.textContent = `It's a tie!`
+  }else {
+  `Congrats! ${turn === 1 ? "X" : "O"} wins!`
   }
   }
   // if (winner === "false" && tie === "false") {
@@ -119,7 +119,7 @@ function updateMessage() {
   // } else {
   //   `Congratulations ${!turn}! You win!`
   // }
-}
+
 
 //updateMessage()
 
@@ -183,6 +183,7 @@ function switchPlayerTurn(){
   }
 }
 
+//? Issue - cannot get winner to announce
 
 
 
@@ -234,7 +235,7 @@ function switchPlayerTurn(){
 //loop through the board and for each square:
  //use current index of the iteration to access the same  square in squareEls array
   //style the square however, depending on value of contained in the square being iterated over (-1, 1, or null) 
-    //? start with letters to keep it simple (Y, Z, null)
+    // start with letters to keep it simple (Y, Z, null)
 
 
 
