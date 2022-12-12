@@ -106,7 +106,7 @@ function updateMessage() {
   if (!winner && !tie) {
   messageEls.textContent = `It's ${turn === 1 ? "the ghost" : "the alien"}'s turn!`
   }else if (!winner && tie) {
-  messageEls.textContent = `⛧ It's a tie! Demons take over the world! ⛧`
+  messageEls.textContent = `⛧ I̵͓̺͛̽͝t̴̙͖̟͒̽̚'̴͖̫̞͌͌͐s̴̻͎͛͑̔ a̵̢̢͎͆͐̀ ț̸̠͊͊i̸̞͓͛̐é̵͔̙͕͛!̴̡͉̪͌̒̾ D̴̪͕͕̐̿̒e̴̢̠͚͆̕͝m̴̢̼͎͑͑͝o̴̘͙͚͊̈́̐ń̸̡̟͔̈́̾s̵̢̡̼̓̐͠ t̸̪̻͚͆̚̚à̸̪͇̼̿͠k̵̡͓͖̽͊̚e̴̢͉̘͠͠ o̸͍͎̙͛͌̓v̵͙͎͊͝e̸̘̪̦̾̈́̾r̴͓̙͚̀͒̓ t̵̡̠̼͐̚͝h̸̼̠͉̿̐̕e̴͎̪̝̒͘̚ ẅ̸͉͔́̈́̈́o̴̢̙̿̈́r̴̢̠̺̿̀͛l̸͓̼̺͊͑͆d̵͕̦̫̓̽͊!̸̡͕̦͑͆͘ ⛧`
   } else {
     messageEls.textContent = `Congrats! ${turn === 1 ? "Ghost" : "Alien"}s take over the world!`
   }
