@@ -10,6 +10,7 @@ const winningCombos = [
     [2, 5, 8]
 ]
 
+//! install TURBO CONSOLE LOG!!
 
 /*---------------------------- Variables (state) ----------------------------*/
 
@@ -46,22 +47,28 @@ const resetBtnEl = document.querySelector(".reset")
 //   console.log(evt)
 // })
 
+//! STATE VARIABLES
+//! WIREFRAMING
+//! WHAT FUNCTIONS WILL I NEED? EACH FUNCTION SHOULD DO 1 THING TO START
 
 
 /*-------------------------------- Functions --------------------------------*/
-//init()
+init()
 
 //call init function when app loads
 function init() {
   board = [null, null, null, null, null, null, null, null, null]
   turn = 1
-  winner = true
+  winner = false
   tie = false
   render()
 }
+
+// ! WINNER WAS FALSE I HAD IT AS TRUE AHHHH!!!!
+
 //? There is a better way to initialize a new array * 9 Nulls, and to replace that with the boards in order?
 
-function render(){
+function render() {
   updateBoard()
   updateMessage()
 }
@@ -69,37 +76,63 @@ function render(){
 
 function updateBoard() {
     board.forEach(function(square, sqrIndex) {
+      
       //console.dir(squareEls[index])
     if (square === -1) {
-      //console.log(squareEls[index])
+      //if O occupies spot
       squareEls[sqrIndex].textContent = "O"
     } else if (square === 1) {
       squareEls[sqrIndex].textContent = "X"
-    }
+    }//if X occupies spot
     else if (square === null) {
       squareEls[sqrIndex].textContent = " "
     }
   })
 }
+
+/* (value) because value stored in board will be 1, -1, or null
+
+function updateBoard() {
+board.forEach(val, idx) => {
+if (val === 1)    {
+
+}               !means X occupies the squareElse[idx] spot
+      */
+
 //updateBoard()
 
 function updateMessage() {
-  if (winner === "false" && tie === "false") {
-    return `It is ${turn}'s turn!`;
-  }
-  if (winner === "false" && tie === "true") {
-    return `It is a tie!`
+  if (!winner && !tie) {
+  if (turn === 1) {
+  messageEls.textContent = `It's ${turn === 1 ? 'X' : 'O'}'s turn!`
+  }else if (!winner && tie) {
+  messageEls.textContent = `It's ${turn === 1 ? 'X' : 'O'}'s turn!`
   } else {
-    `Congratulations ${!turn}! You win!`
+   `Congrats!${turn === 1 ? 'X' : 'O'}'s win!`
   }
+  }
+  // if (winner === "false" && tie === "false") {
+  //   return `It is ${turn}'s turn!`;
+  // }
+  // if (winner === "false" && tie === "true") {
+  //   return `It is a tie!`
+  // } else {
+  //   `Congratulations ${!turn}! You win!`
+  // }
 }
+
 //updateMessage()
+
 
 function handleClick(evt) {
   //let sqIdx = evt.target.id.at(-1) 
-  let sqIdx = evt.target.id.slice(-1)
+  //let sqIdx = evt.target.id.slice(2)
+  //slice would stop working over indexes over 1 digit
+  const sqIdx = parseInt(evt.target.id.replace("sq", " "))
   //console.log(sqIdx)
+  // if (isNaN(sqIdx)) return
   if (board[sqIdx] !== null || winner === true){
+    //if (isNaN)
   return}
   placePiece(sqIdx)
   checkForTie()
@@ -138,13 +171,14 @@ function checkForWinner(){
   }
     })
   }
+//! no return, cannot return out of a ForEach
 
 //checkForWinner()
 
 function switchPlayerTurn(){
   if (winner === true){
     return
-  } else if (winner === false){
+  } else { (winner === false)
     turn = (turn * -1)
   }
 }
