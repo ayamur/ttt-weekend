@@ -26,14 +26,19 @@ const squareEls = document.querySelectorAll(".sqr")
 //console.log(squareEls)
 const messageEls = document.querySelector(".message")
 //console.log(messageEls)
-const resetBtnEl = document.querySelector(".reset").addEventListener("click", init())
+const boardEl = document.querySelector(".board")
+const resetBtnEl = document.querySelector(".reset")
 /*----------------------------- Event Listeners -----------------------------*/
 
 // document.getElementById("gameboard").forEach(function (evt) {
-//   squareEls.addEventListener("click", evt)
-// })
+  //   squareEls.addEventListener("click", evt)
+  // })
+  boardEl.addEventListener("click", handleClick)
   
-squareEls.forEach(square => square.addEventListener("click", handleClick)) 
+  resetBtnEl.addEventListener("click", init)
+// document.querySelectorAll(".sqr").forEach(square => {square.addEventListener("click", handleClick{
+//   )}
+//   )}
 
 
   // const btnEl = document.querySelector('button')
@@ -44,40 +49,39 @@ squareEls.forEach(square => square.addEventListener("click", handleClick))
 
 
 /*-------------------------------- Functions --------------------------------*/
-init()
+//init()
 
 //call init function when app loads
 function init() {
-  board = [null, null, null, null, null, null, null, null, null];
+  board = [null, null, null, null, null, null, null, null, null]
   turn = 1
   winner = true
   tie = false
-  render();
-  updateBoard()
-  updateMessage()
+  render()
 }
 //? There is a better way to initialize a new array * 9 Nulls, and to replace that with the boards in order?
-
-function updateBoard() {
-    board.forEach(function (square, index) {
-    if (square === -1) {
-      //console.log(squareEls[index])
-      return squareEls[index].textContent = "O";
-    } 
-    if (square === 1) {
-      return squareEls[index].textContent = "X";
-    }
-    // if (square === null) {
-    //   return squareEls[index].textContent = "";
-    // }
-  })
-}
-updateBoard()
 
 function render(){
   updateBoard()
   updateMessage()
 }
+
+
+function updateBoard() {
+    board.forEach(function(square, sqrIndex) {
+      //console.dir(squareEls[index])
+    if (square === -1) {
+      //console.log(squareEls[index])
+      squareEls[sqrIndex].textContent = "O"
+    } else if (square === 1) {
+      squareEls[sqrIndex].textContent = "X"
+    }
+    else if (square === null) {
+      squareEls[sqrIndex].textContent = " "
+    }
+  })
+}
+//updateBoard()
 
 function updateMessage() {
   if (winner === "false" && tie === "false") {
@@ -92,17 +96,19 @@ function updateMessage() {
 //updateMessage()
 
 function handleClick(evt) {
-  const sqIdx = evt.target.id.at(-1) 
-  if (board[sqIdx] === true || winner === true){
-    return
-  } else {
+  //let sqIdx = evt.target.id.at(-1) 
+  let sqIdx = evt.target.id.slice(-1)
+  //console.log(sqIdx)
+  if (board[sqIdx] !== null || winner === true){
+  return}
   placePiece(sqIdx)
   checkForTie()
   checkForWinner()
   switchPlayerTurn()
+  render()
 //console.log(board[sqIdx])
 }
-}
+
 //.at will find event target id at, and -1 mean it will go to the very end of the string and one left
 //or use slice()
 
@@ -110,11 +116,11 @@ function placePiece(sqIdx) {
   (board[sqIdx] = turn)
   //console.log(board[index])
 }
-placePiece()
+//placePiece()
 //console.log(placePiece())
 
 function checkForTie(){
-  if (!board.includes("null")) {
+  if (!board.includes(null)) {
     tie = true
   }
 }
@@ -133,12 +139,12 @@ function checkForWinner(){
     })
   }
 
-  checkForWinner()
+//checkForWinner()
 
 function switchPlayerTurn(){
-  if (winner = true){
+  if (winner === true){
     return
-  } else if (winner = false){
+  } else if (winner === false){
     turn = (turn * -1)
   }
 }
