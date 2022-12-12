@@ -81,9 +81,9 @@ function updateBoard() {
       //console.dir(squareEls[index])
     if (square === -1) {
       //if O occupies spot
-      squareEls[sqrIndex].textContent = "O"
+      squareEls[sqrIndex].textContent = "👽"
     } else if (square === 1) {
-      squareEls[sqrIndex].textContent = "X"
+      squareEls[sqrIndex].textContent = "👻"
     }//if X occupies spot
     else if (square === null) {
       squareEls[sqrIndex].textContent = " "
@@ -104,11 +104,11 @@ if (val === 1)    {
 
 function updateMessage() {
   if (!winner && !tie) {
-  messageEls.textContent = `It's ${turn === 1 ? "X" : "O"}'s turn!`
-  }if (!winner && tie) {
-  messageEls.textContent = `It's a tie!`
-  }else {
-  `Congrats! ${turn === 1 ? "X" : "O"} wins!`
+  messageEls.textContent = `It's ${turn === 1 ? "the ghost" : "the alien"}'s turn!`
+  }else if (!winner && tie) {
+  messageEls.textContent = `⛧ It's a tie! Demons take over the world! ⛧`
+  } else {
+    messageEls.textContent = `Congrats! ${turn === 1 ? "Ghost" : "Alien"}s take over the world!`
   }
   }
   // if (winner === "false" && tie === "false") {
